@@ -5,51 +5,67 @@ import time
 
 app= Flask(__name__)
 
-led1,led2,led3= 3,5,7
+forward_start,forward,reverse= 3,5,7
+left, right= 16,18
+
 
 rpi.setwarnings(False)
 rpi.setmode(rpi.BOARD)
-rpi.setup(led1, rpi.OUT)
-rpi.setup(led2, rpi.OUT)
-rpi.setup(led3, rpi.OUT)
-rpi.output(led1, 0)
-rpi.output(led2, 0)
-rpi.output(led3, 0)
+rpi.setup(forward_start, rpi.OUT)
+rpi.setup(forward, rpi.OUT)
+rpi.setup(reverse, rpi.OUT)
+rpi.setup(left, rpi.OUT)
+rpi.setup(right, rpi.OUT)
+
+
+rpi.output(forward_start, 0)
+rpi.output(forward, 0)
+rpi.output(reverse, 0)
+rpi.output(left, 0)
+rpi.output(right, 0)
 print("Done")
 
 @app.route('/')
 def index():
     return render_template('webpage.html')
 
-@app.route('/A')
-def led1on():
-    rpi.output(led1,1)
+@app.route('/FORWARD')
+def forward_funciton():
+    rpi.output(forward_start,1)
+    rpi.output(forward,1)
+    time.sleep(0.05)
+    rpi.output(forward_start,0)
     return render_template('webpage.html')
 
-@app.route('/a')
-def led1off():
-    rpi.output(led1,0)
+@app.route('/NOT_FORWARD')
+def not_forward_function():
+    rpi.output(forward,0)
+    rpi.output(forward_start,0)
+    return render_template('webpage.html')
+    
+@app.route('/REVERSE')
+def reverse_funciton():
+    rpi.output(reverse,1)    
+    time.sleep(0.5)
+    rpi.output(reverse,0)
     return render_template('webpage.html')
 
-@app.route('/B')
-def led2on():
-    rpi.output(led2,1)
+
+@app.route('/LEFT')
+def left_function():
+    rpi.output(left,1)
+    time.sleep(1)
+    rpi.output(left,0)
     return render_template('webpage.html')
 
-@app.route('/b')
-def led2off():
-    rpi.output(led2,0)
+@app.route('/RIGHT')
+def right_function():
+    rpi.output(right,1)
+    time.sleep(1)
+    rpi.output(right,0)
     return render_template('webpage.html')
 
-@app.route('/C')
-def led3on():
-    rpi.output(led3,1)
-    return render_template('webpage.html')
 
-@app.route('/c')
-def led3off():
-    rpi.output(led3,0)
-    return render_template('webpage.html')
 
 if __name__=="__main__":
     print("Start")
