@@ -1,129 +1,22 @@
-<!DOCTYPE html>
-<html>
-
-    <head>
-	    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<style>
-@import url(https://fonts.googleapis.com/css?family=Lato:300);
-
-html {
-  background: radial-gradient(#000, #111);
-  height: 100%;
-}
-
-.keys {
-  font-family: 'Lato', sans-serif;
-  text-align: center;
-  width: 500px;
-  height: 200px;
-  margin: auto;
-}
-
-.arr {
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  line-height: 100px;
-  background: grey;
-  color: white;
-  font-size: 50px;
-  border-right: 10px solid darken(grey, 20);
-  border-bottom: 10px solid darken(grey, 20);
-  border-left: 10px solid darken(grey, 15);
-  border-top: 10px solid darken(grey, 10);
-  display: inline-block;
-  margin: 5px;
-  transition: all .05s linear;
-  &:active {
-    border-bottom: 8px solid darken(grey, 20);
-    text-shadow: 0 0 10px white, 0 0 10px white, 0 0 20px white;
-    transform: translate(0, 2px);
-  }
-  user-select: none;
-}
-
-.up {
-  position: relative;
-  top: -4px;
-}
-
-.pressed {
-  border-bottom: 8px solid darken(grey, 20);
-  text-shadow: 0 0 10px white;
-  transform: translate(0, 2px);
-}
-
-.names {
-  font-size: 18px;
-  font-family: 'Lato', sans-serif;
-  text-align: center;
-  color: white;
-  text-shadow: 0 0 10px white, 0 0 10px white, 0 0 10px white, 0 0 10px white;
-}
-
-.b {
-  color: blue;
-  text-shadow: 0 0 10px blue, 0 0 10px blue, 0 0 10px blue, 0 0 10px blue;
-  font-size: 100px;
-  font-family: serif;
-}
-
-.a {
-  color: yellow;
-  text-shadow: 0 0 10px yellow, 0 0 10px yellow, 0 0 10px yellow, 0 0 10px yellow;
-  font-size: 100px;
-  font-family: serif;
-}
-
-	</style>
-    </head>
-    <body>
-<div class="keys">
-  <div class="up arr"><i class="fa fa-arrow-up"></i></div>
-  <br />
-  <div class="left arr"><i class="fa fa-arrow-left"></i></div>  
-  <div class="down arr"><i class="fa fa-arrow-down"></i></div>
-  <div class="right arr"><i class="fa fa-arrow-right"></i></div>
-</div>
-<br />
-<br />
-<br />
-<br />
-<div class="names">
-  <div class="uptext"></div>
-  <div class="downtext"></div>
-  <div class="lefttext"></div>
-  <div class="righttext"></div>
-  <div class="b"></div>  
-  <div class="a"></div>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
 $(document).keydown(function(e) {
-  if (e.which==37) {     
+  if (e.which==37) {
     $('.left').addClass('pressed'); 
     $('.lefttext').text('LEFT');
     $('.left').css('transform', 'translate(0, 2px)');
-    window.location.href = '/left_begin',true;
   } else if (e.which==38) {
     $('.up').addClass('pressed');
     $('.uptext').text('UP');
     $('.left').css('transform', 'translate(0, 2px)');
     $('.down').css('transform', 'translate(0, 2px)');
     $('.right').css('transform', 'translate(0, 2px)');
-    window.location.href = '/forward_begin',true;
   } else if (e.which==39) {
     $('.right').addClass('pressed');
     $('.righttext').text('RIGHT'); 
     $('.right').css('transform', 'translate(0, 2px)'); 
-    window.location.href = '/right_begin',true;
   } else if (e.which==40) {
     $('.down').addClass('pressed');
     $('.downtext').text('DOWN');
     $('.down').css('transform', 'translate(0, 2px)');
-    window.location.href = '/reverse_begin',true;
   } else if (e.which==66) {
     $('.b').text('B');  
   } else if (e.which==65) {
@@ -132,28 +25,24 @@ $(document).keydown(function(e) {
 });
 
 $(document).keyup(function(e) {
-  if (e.which==37) {    	  
+  if (e.which==37) {
     $('.left').removeClass('pressed');
     $('.lefttext').text('');   
     $('.left').css('transform', 'translate(0, 0)');  
-    window.location.href = '/left_end',true;
   } else if (e.which==38) {
     $('.up').removeClass('pressed');
     $('.uptext').text('');
     $('.left').css('transform', 'translate(0, 0)');
     $('.down').css('transform', 'translate(0, 0)');
     $('.right').css('transform', 'translate(0, 0)');
-    window.location.href = '/forward_end',true;
   } else if (e.which==39) {
     $('.right').removeClass('pressed'); 
     $('.righttext').text(''); 
     $('.right').css('transform', 'translate(0, 0)');
-    window.location.href = '/right_end',true;
   } else if (e.which==40) {
     $('.down').removeClass('pressed');
     $('.downtext').text('');
     $('.down').css('transform', 'translate(0, 0)');
-    window.location.href = '/reverse_end',true;
   } else if (e.which==66) {
     $('.b').text('');  
   } else if (e.which==65) {
@@ -164,25 +53,21 @@ $(document).keyup(function(e) {
 $('.left').mousedown(function() {
   $('.lefttext').text('LEFT');
   $('.left').css('transform', 'translate(0, 2px)');
-  window.location.href = '/left_begin',true;
 });
 
 $('.left').mouseup(function() {
   $('.lefttext').text('');
   $('.left').css('transform', 'translate(0, 0)');
-  window.location.href = '/left_end',true;
 });
 
 $('.right').mousedown(function() {
   $('.righttext').text('RIGHT');
   $('.right').css('transform', 'translate(0, 2px)');
-  window.location.href = '/right_begin',true;
 });
 
 $('.right').mouseup(function() {
   $('.righttext').text('');
   $('.right').css('transform', 'translate(0, 0)');
-  window.location.href = '/right_end',true;
 });
 
 $('.up').mousedown(function() {
@@ -190,7 +75,6 @@ $('.up').mousedown(function() {
   $('.left').css('transform', 'translate(0, 2px)');
   $('.down').css('transform', 'translate(0, 2px)');
   $('.right').css('transform', 'translate(0, 2px)');
-  window.location.href = '/forward_begin',true;
 });
 
 $('.up').mouseup(function() {
@@ -198,21 +82,29 @@ $('.up').mouseup(function() {
   $('.left').css('transform', 'translate(0, 0)');
   $('.down').css('transform', 'translate(0, 0)');
   $('.right').css('transform', 'translate(0, 0)');
-  window.location.href = '/forward_end',true;
 });
 
 $('.down').mousedown(function() {
   $('.downtext').text('DOWN');
   $('.down').css('transform', 'translate(0, 2px)');
-  window.location.href = '/reverse_begin',true;
 });
 
 $('.down').mouseup(function() {
   $('.downtext').text('');
   $('.down').css('transform', 'translate(0, 0)');
-  window.location.href = '/reverse_end',true;
 });
 
+/*
+ * Konami-JS ~ 
+ * :: Now with support for touch events and multiple instances for 
+ * :: those situations that call for multiple easter eggs!
+ * Code: https://konami-js.googlecode.com/
+ * Examples: http://www.snaptortoise.com/konami-js
+ * Copyright (c) 2009 George Mandis (georgemandis.com, snaptortoise.com)
+ * Version: 1.4.2 (9/2/2013)
+ * Licensed under the MIT License (https://opensource.org/licenses/MIT)
+ * Tested in: Safari 4+, Google Chrome 4+, Firefox 3+, IE7+, Mobile Safari 2.2.1 and Dolphin Browser
+ */
 
 var Konami = function (callback) {
   var konami = {
@@ -308,9 +200,40 @@ var Konami = function (callback) {
   return konami;
 };
 
+var easter_egg = new Konami();
+easter_egg.code = function() {
+  alert('Colors mode activated (Press A when you close this)!');
+  
+  $('.up').css('background', 'orange');
+  $('.up').css('border-right', '10px solid #996300');
+  $('.up').css('border-bottom', '10px solid #996300');
+  $('.up').css('border-left', '10px solid #b37300');
+  $('.up').css('border-top', '10px solid #cc8400');
+  $('.uptext').css('color', 'orange')  
+  $('.uptext').css('text-shadow', '0 0 10px orange, 0 0 10px orange, 0 0 10px orange, 0 0 10px orange');
 
-</script>
+  $('.down').css('background', 'tomato');
+  $('.down').css('border-right', '10px solid #e02200');
+  $('.down').css('border-bottom', '10px solid #e02200');
+  $('.down').css('border-left', '10px solid #f92600');
+  $('.down').css('border-top', '10px solid #ff3814');
+  $('.downtext').css('color', 'tomato')  
+  $('.downtext').css('text-shadow', '0 0 10px tomato, 0 0 10px tomato, 0 0 10px tomato, 0 0 10px tomato');
 
-</body>
-</html>
+  $('.left').css('background', 'skyblue');
+  $('.left').css('border-right', '10px solid #30aadc');
+  $('.left').css('border-bottom', '10px solid #30aadc');
+  $('.left').css('border-left', '10px solid #45b3e0');
+  $('.left').css('border-top', '10px solid #5bbce4');
+  $('.lefttext').css('color', 'skyblue')  
+  $('.lefttext').css('text-shadow', '0 0 10px skyblue, 0 0 10px skyblue, 0 0 10px skyblue, 0 0 10px skyblue');
 
+  $('.right').css('background', 'red');
+  $('.right').css('border-right', '10px solid #990000');
+  $('.right').css('border-bottom', '10px solid #990000');
+  $('.right').css('border-left', '10px solid #b30000');
+  $('.right').css('border-top', '10px solid #cc0000');
+  $('.righttext').css('color', 'red')  
+  $('.righttext').css('text-shadow', '0 0 10px red, 0 0 10px red, 0 0 10px red, 0 0 10px red');
+}
+easter_egg.load();
