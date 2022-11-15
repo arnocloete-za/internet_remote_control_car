@@ -34,6 +34,9 @@ def forward_begin_function():
     rpi.output(forward,1)
     time.sleep(0.05)
     rpi.output(forward_start,0)
+    # move forward in small intervals
+    time.sleep(0.5)
+    rpi.output(forward,0)
     return render_template('web.html')
 
 @app.route('/forward_end')
@@ -60,29 +63,31 @@ def reverse_end_function():
 @app.route('/left_begin')
 def left_begin_function():
     print("PRESS: left_begin")
+    rpi.output(right,0)
     rpi.output(left,1)
-    #time.sleep(1)
-    #rpi.output(left,0)
+    time.sleep(1)
+    rpi.output(left,0)
     return render_template('web.html')
 
 @app.route('/left_end')
 def left_end_function():
-    print("PRESS: left_end")
-    rpi.output(left,0)
+    print("PRESS: left_end, do nothing for now")
+    # rpi.output(left,0)
     return render_template('web.html')
 
 @app.route('/right_begin')
 def right_begin_function():
     print("PRESS: right_begin")
+    rpi.output(left,0)
     rpi.output(right,1)
-    #time.sleep(1)
-    #rpi.output(right,0)
+    time.sleep(1)
+    rpi.output(right,0)
     return render_template('web.html')
 
 @app.route('/right_end')
 def right_end_function():
-    print("PRESS: right_end")
-    rpi.output(right,0)
+    print("PRESS: right_end, do nothing for now")
+    #rpi.output(right,0)
     return render_template('web.html')
 
 #@app.route("/forward", methods=['POST'])
